@@ -48,7 +48,7 @@ function gioco(difficolta){
 }
 //generazione di un numero casuale
 function getRndInteger(min, max) {
-  return Math.floor(Math.random() * (max - min) ) + min;
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 //inserimento numeri in array solo se non già presenti
 function insert (array, numero){
