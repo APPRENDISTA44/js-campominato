@@ -3,8 +3,9 @@ var difficolta = prompt('Inserisci la difficoltà da 0 a 2');
 while (difficolta != 0 && difficolta != 1 && difficolta != 2) {
   var difficolta = prompt('Inserisci la difficoltà da 0 a 2');
 }
-var contatore = cont (difficolta);
-console.log(cont(difficolta));
+var contatore = numeroMassimoTentativi(difficolta);
+console.log('diff',cont(difficolta));
+console.log('tentativi',contatore);
 //lista delle bombe
 var listaBombe = gioco(difficolta);
 console.log('bombe',listaBombe);
@@ -12,13 +13,13 @@ console.log('bombe',listaBombe);
 var listaScelte = [];
 var scelta;
 // //inizio della partita
-while (listaScelte.length<(contatore - 16) && !(listaBombe.includes(scelta))) {
+while (listaScelte.length< contatore && !(listaBombe.includes(scelta))) {
   scelta = choice(listaScelte, difficolta);
   listaScelte.push(scelta);
-  console.log(listaScelte);
+  console.log('scelta',listaScelte);
 }
 //esito partita
-if (listaScelte.length == (contatore - 16)) {
+if (listaScelte.length == contatore) {
   document.getElementById('risposta').innerHTML = 'Hai Vinto!!!'
 }else {
   document.getElementById('risposta').innerHTML = 'Hai Perso...'
@@ -48,32 +49,12 @@ function insert (array, numero){
 }
 //numero scelto dall'utente
 function choice (array , difficolta) {
-  if( difficolta == 0){
-    var x = parseInt(prompt('Inserisci un numero da 1 a 100'));
-    while (!(x>0 && x<101) || (array.includes(x))) {
-      if (array.includes(x)) {
-        var x = parseInt(prompt('Numero già inserito, inserisci un numero da 1 a 100'));
-      } else {
-          var x = parseInt(prompt('Inserisci un numero da 1 a 100'));
-      }
-    }
-  } else if (difficolta == 1) {
-    var x = parseInt(prompt('Inserisci un numero da 1 a 80'));
-    while (!(x>0 && x<81) || (array.includes(x))) {
-      if (array.includes(x)) {
-        var x = parseInt(prompt('Numero già inserito, inserisci un numero da 1 a 80'));
-      } else {
-          var x = parseInt(prompt('Inserisci un numero da 1 a 80'));
-      }
-    }
-  }else {
-    var x = parseInt(prompt('Inserisci un numero da 1 a 50'));
-    while (!(x>0 && x<51) || (array.includes(x))) {
-      if (array.includes(x)) {
-        var x = parseInt(prompt('Numero già inserito, inserisci un numero da 1 a 50'));
-      } else {
-          var x = parseInt(prompt('Inserisci un numero da 1 a 50'));
-      }
+  var x = parseInt(prompt('Inserisci un numero da 1 a ' + cont(difficolta)));
+  while (!(x>0 && x<(cont(difficolta)+1)) || (array.includes(x))) {
+    if (array.includes(x)) {
+      var x = parseInt(prompt('Numero già inserito, inserisci un numero da 1 a ' + cont(difficolta)));
+    } else {
+        var x = parseInt(prompt('Inserisci un numero da 1 a ' + cont(difficolta)));
     }
   }
   return x;
@@ -89,4 +70,7 @@ function cont (difficolta) {
     contatore = 50;
   }
   return contatore;
+}
+function numeroMassimoTentativi(difficolta){
+  return cont(difficolta) -16 ;
 }
