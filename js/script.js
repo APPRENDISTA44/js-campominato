@@ -20,9 +20,9 @@ while (listaScelte.length < contatore && !(listaBombe.includes(scelta))) {
 }
 //esito partita
 if (listaScelte.length == contatore) {
-  document.getElementById('risposta').innerHTML = 'Hai Vinto!!! il tuo punteggio è ' + listaScelte.length + '/' + cont(difficolta);
+  document.getElementById('risposta').innerHTML = 'Hai Vinto!!! il tuo punteggio è ' + listaScelte.length + '/' + contatore;
 }else {
-  document.getElementById('risposta').innerHTML = 'Hai Perso... Ma il tuo punteggio è ' + listaScelte.length + '/' + cont(difficolta);
+  document.getElementById('risposta').innerHTML = 'Hai Perso... Ma il tuo punteggio è ' + (listaScelte.length - 1) + '/' + contatore;
 
 }
 
