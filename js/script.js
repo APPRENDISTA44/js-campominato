@@ -92,6 +92,7 @@ function choice (array , difficolta) {
 }
 //a seconda della difficolta do il range
 function cont (difficolta) {
+  var contatore;
   if (difficolta == 0) {
     contatore = 100;
   } else if (difficolta == 1) {
