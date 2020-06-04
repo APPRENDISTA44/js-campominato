@@ -30,21 +30,9 @@ if (listaScelte.length == (contatore - 16)) {
 // RETURN: lista numeri casuali per il gioco
 function gioco(difficolta){
   var numeriCasuali = [];
-  if (difficolta == 0) {
-    while (numeriCasuali.length<16) {
-      var numero = getRndInteger(1,100);
-      insert(numeriCasuali, numero)
-    }
-  } else if (difficolta == 1) {
-      while (numeriCasuali.length<16) {
-        var numero = getRndInteger(1,80);
-        insert(numeriCasuali, numero)
-      }
-  }else {
-    while (numeriCasuali.length<16) {
-      var numero = getRndInteger(1,50);
-      insert(numeriCasuali, numero)
-    }
+  while (numeriCasuali.length<16) {
+    var numero = getRndInteger(1,cont(difficolta));
+    insert(numeriCasuali, numero)
   }
   return numeriCasuali;
 }
