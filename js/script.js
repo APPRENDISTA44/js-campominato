@@ -90,7 +90,7 @@ function choice (array , difficolta) {
   }
   return x;
 }
-
+//a seconda della difficolta do il range
 function cont (difficolta) {
   if (difficolta == 0) {
     contatore = 100;
