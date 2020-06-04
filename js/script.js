@@ -13,7 +13,7 @@ console.log('bombe',listaBombe);
 var listaScelte = [];
 var scelta;
 // //inizio della partita
-while (listaScelte.length< contatore && !(listaBombe.includes(scelta))) {
+while (listaScelte.length < contatore && !(listaBombe.includes(scelta))) {
   scelta = choice(listaScelte, difficolta);
   listaScelte.push(scelta);
   console.log('scelta',listaScelte);
@@ -47,14 +47,16 @@ function insert (array, numero){
     array.push(numero);
   }
 }
-//numero scelto dall'utente
+//numero scelto dall'utente, controllo se ha già inserito il numero o se ha inserito caratteri sbagliati
+//controllo anche se il  numero è nel range appropriato
 function choice (array , difficolta) {
-  var x = parseInt(prompt('Inserisci un numero da 1 a ' + cont(difficolta)));
-  while (!(x>0 && x<(cont(difficolta)+1)) || (array.includes(x))) {
+  var y = cont(difficolta);
+  var x = parseInt(prompt('Inserisci un numero da 1 a ' + y));
+  while ( ! (x > 0 && x <= y) || (array.includes(x))) {
     if (array.includes(x)) {
-      var x = parseInt(prompt('Numero già inserito, inserisci un numero da 1 a ' + cont(difficolta)));
+      var x = parseInt(prompt('Numero già inserito, inserisci un numero da 1 a ' + y));
     } else {
-        var x = parseInt(prompt('Inserisci un numero da 1 a ' + cont(difficolta)));
+        var x = parseInt(prompt('Inserisci un numero da 1 a ' + y));
     }
   }
   return x;
@@ -71,6 +73,7 @@ function cont (difficolta) {
   }
   return contatore;
 }
+//numero massimo di tentativi a seconda della difficoltà
 function numeroMassimoTentativi(difficolta){
   return cont(difficolta) -16 ;
 }
